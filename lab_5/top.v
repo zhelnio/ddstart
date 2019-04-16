@@ -16,7 +16,7 @@ module top
     assign { io_74, io_75, io_76, io_77, io_78 } = val;
     assign { io_2, io_4, io_6, io_8, io_14, io_16, io_18 } = hex;
 
-    // counter
+    // adder
     adder adder (a, b, val);
 
     // binary to 7-segment

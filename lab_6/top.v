@@ -7,11 +7,11 @@ module top
     // input signals
     wire [2:0] a = { io_67, io_69, io_71 };
 
-    // connecting couter output with top module ports
+    // connecting demux output with top module ports
     wire [7:0] y;
     assign { io_100, io_2, io_4, io_6, io_8, io_14, io_16, io_18 } = y;
 
-    // counter
+    // demux
     demux_1 demux (a, y);
 
 endmodule
