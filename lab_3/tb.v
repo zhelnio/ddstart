@@ -9,8 +9,6 @@ module tb;
     wire [7:0] q;
 
     // creating the instance of the module we want to test
-    //  d_flip_flop - module name
-    //  dut         - instance name ('dut' means 'device under test')
     shift_register dut (clk, d, q);
 
     // do at the beginning of the simulation
