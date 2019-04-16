@@ -8,8 +8,6 @@ module tb;
     reg  clk, d;
     wire q;
 
-    d_flip_flop d_flip_flop (clk, d, q);
-
     // creating the instance of the module we want to test
     //  d_flip_flop - module name
     //  dut         - instance name ('dut' means 'device under test')
