@@ -1,51 +1,41 @@
 
 module top
 (
-    input  io_72,
-    input  io_73,
-    output io_74, io_75, io_76, io_77,
+    input  io_67, io_69, io_71, io_73,
+    input  io_66, io_68, io_70, io_72,
+    output io_74, io_75, io_76, io_77, io_78,
     output io_2, io_4, io_6, io_8, io_14, io_16, io_18
 );
     // input signals
-    wire       clk = io_72;
-    wire       rst = io_73;
-
-    // counter output signal
-    wire [3:0] dig;
-    wire [6:0] hex;
+    wire [3:0] a = { io_67, io_69, io_71, io_73 };
+    wire [3:0] b = { io_66, io_68, io_70, io_72 };
 
     // connecting couter output with top module ports
-    assign { io_74, io_75, io_76, io_77 } = dig;
+    wire [4:0] val; // adder output signal
+    wire [6:0] hex; // 7-seg value
+    assign { io_74, io_75, io_76, io_77, io_78 } = val;
     assign { io_2, io_4, io_6, io_8, io_14, io_16, io_18 } = hex;
 
     // counter
-    counter cntr
-    (
-        .clk ( clk ),
-        .rst ( rst ),
-        .q   ( dig ) 
-    );
+    adder adder (a, b, val);
 
     // binary to 7-segment
     seven_seg_digit seg7
     (
-        .dig ( dig ),
-        .hex ( hex )
+        .dig ( val[3:0] ),
+        .hex ( hex      )
     );
 
 endmodule
 
-module counter
+module adder
 (
-    input            clk,
-    input            rst,
-    output reg [3:0] q
+    input      [3:0] a,
+    input      [3:0] b,
+    output reg [4:0] s
 );
-    always @(posedge clk)
-        if(rst)
-            q <= 4'b0;
-        else
-            q <= q + 1;
+    always @(*)
+        s = a + b;
 
 endmodule
 
